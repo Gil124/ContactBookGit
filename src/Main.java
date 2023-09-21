@@ -3,6 +3,7 @@ import contactBook.ContactBook;
 
 import java.util.Scanner;
 
+//Teste
 
 public class Main {
     //Constantes que definem os comandos
