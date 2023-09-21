@@ -1,6 +1,7 @@
 package contactBook;
 
 import contactBook.Contact;
+import java.util.HashSet;
 
 public class ContactBook {
     static final int DEFAULT_SIZE = 100;
@@ -91,6 +92,18 @@ public class ContactBook {
     //Pre: hasNext()
     public Contact next() {
         return contacts[currentContact++];
+    }
+
+    public boolean hasDuplicates() {
+        for (int i = 0; i < contacts.length - 1; i++) {
+            if(contacts[i]!= null) {
+                for (int j = i + 1; j < contacts.length - 1; j++) {
+                    if (contacts[j]!=null)
+                        if (i != j && contacts[i].getPhone() == contacts[j].getPhone()) return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

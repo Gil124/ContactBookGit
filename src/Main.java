@@ -21,11 +21,13 @@ public class Main {
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
-    public static final String PHONE_NOT_EXIST = "contactBook.Phone number does not exist.";
+    public static final String PHONE_NOT_EXIST = "Phone number does not exist.";
     public static final String CONTACT_ADDED = "contactBook.Contact added.";
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
+    public static final String DUP_FOUND = "There are contacts that share phone numbers.";
+    public static final String DUP_NOT_FOUND = "All contacts have different phone numbers.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -59,6 +61,9 @@ public class Main {
                     break;
                 case LOOKUP_CONTACT:
                     lookupContact(in,cBook);
+                    break;
+                case REPEATED_PHONES:
+                    checkDup(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -163,11 +168,17 @@ public class Main {
         while (cBook.hasNext()) {
             Contact c = cBook.next();
             if (c.getPhone() == phone) {
-                System.out.println(c.getName() + "; " + c.getEmail() + "; " + c.getPhone());
+                System.out.println(c.getName());
                 return;
             }
         }
         System.out.println(PHONE_NOT_EXIST);
 
+    }
+
+    private static void checkDup( ContactBook cBook) {
+        if(cBook.hasDuplicates())
+            System.out.println(DUP_FOUND);
+        else System.out.println(DUP_NOT_FOUND);
     }
 }
