@@ -21,6 +21,7 @@ public class Main {
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
+    public static final String PHONE_NOT_EXIST = "contactBook.Phone number does not exist.";
     public static final String CONTACT_ADDED = "contactBook.Contact added.";
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
@@ -55,6 +56,9 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case LOOKUP_CONTACT:
+                    lookupContact(in,cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -149,5 +153,21 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void lookupContact(Scanner in,ContactBook cBook){
+        int phone;
+        phone = in.nextInt(); in.nextLine();
+
+        cBook.initializeIterator();
+        while (cBook.hasNext()) {
+            Contact c = cBook.next();
+            if (c.getPhone() == phone) {
+                System.out.println(c.getName() + "; " + c.getEmail() + "; " + c.getPhone());
+                return;
+            }
+        }
+        System.out.println(PHONE_NOT_EXIST);
+
     }
 }
