@@ -4,7 +4,7 @@ Fork this project to make your own version of it.
 
 Project completed by:
 
-### Gil Arroteia - 62656
-### Miguel Nunes - 62944
-### Jão Perleques - 64540
+#### Gil Arroteia - 62656
+#### Miguel Nunes - 62944
+#### Jão Perleques - 64540
 
